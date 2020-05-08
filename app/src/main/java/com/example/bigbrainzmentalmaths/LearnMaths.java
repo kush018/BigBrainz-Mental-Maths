@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -58,19 +59,34 @@ public class LearnMaths extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!userInput.getText().toString().equals("")) {
-                    if (Integer.parseInt(userInput.getText().toString()) == ans) {
-                        Intent intent = new Intent(getApplicationContext(), CorrectAnswer.class);
-                        intent.putExtra(ANS, Integer.toString(ans));
-                        intent.putExtra(USER_CHOICE, userInput.getText().toString());
-                        startActivity(intent);
+                    try {
+                        if (Integer.parseInt(userInput.getText().toString()) == ans) {
+                            Intent intent = new Intent(getApplicationContext(), CorrectAnswer.class);
+                            intent.putExtra(ANS, Integer.toString(ans));
+                            intent.putExtra(USER_CHOICE, userInput.getText().toString());
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(), WrongAnswer.class);
+                            intent.putExtra(ANS, Integer.toString(ans));
+                            intent.putExtra(USER_CHOICE, userInput.getText().toString());
+                            startActivity(intent);
+                        }
                     }
-                    else {
-                        Intent intent = new Intent(getApplicationContext(), WrongAnswer.class);
-                        intent.putExtra(ANS, Integer.toString(ans));
-                        intent.putExtra(USER_CHOICE, userInput.getText().toString());
-                        startActivity(intent);
+                    catch (NumberFormatException e) {
+                        Toast.makeText(getApplicationContext(), "Invalid Number", Toast.LENGTH_SHORT).show();
+                        userInput.setText("");
                     }
                 }
+            }
+        });
+
+        Button skipButton = findViewById(R.id.skipButton);
+
+        skipButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LearnMaths.class);
+                startActivity(intent);
             }
         });
     }
