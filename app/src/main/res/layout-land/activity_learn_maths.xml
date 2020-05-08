@@ -16,7 +16,6 @@
         android:focusableInTouchMode="false"
         android:inputType="numberSigned"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title2" />
 
@@ -29,10 +28,8 @@
         android:focusableInTouchMode="false"
         android:inputType="numberSigned"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/userInput"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/operand1" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/operand1"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/operation"
@@ -42,7 +39,7 @@
         android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/operand2"
         app:layout_constraintEnd_toStartOf="@+id/operand2"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/operand1" />
 
     <TextView
         android:id="@+id/title2"
@@ -69,7 +66,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/operation" />
 
     <TextView
         android:id="@+id/equalsSign"
