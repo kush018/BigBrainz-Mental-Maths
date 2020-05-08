@@ -19,6 +19,9 @@ public class LearnMaths extends AppCompatActivity {
     private TextView operation;
     private int ans;
 
+    public static final String ANS = "com.example.bigbrainzmentalmaths.ANS";
+    public static final String USER_CHOICE = "com.example.bigbrainzmentalmaths.USER_CHOICE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +32,8 @@ public class LearnMaths extends AppCompatActivity {
         userInput = findViewById(R.id.userInput);
         operation = findViewById(R.id.operation);
 
-        operand1.setText(new Random().nextInt(100));
-        operand2.setText(new Random().nextInt(100));
+        operand1.setText(Integer.toString(new Random().nextInt(100)));
+        operand2.setText(Integer.toString(new Random().nextInt(100)));
 
         int op;
         op = new Random().nextInt(3);
@@ -57,10 +60,14 @@ public class LearnMaths extends AppCompatActivity {
                 if (!userInput.getText().toString().equals("")) {
                     if (Integer.parseInt(userInput.getText().toString()) == ans) {
                         Intent intent = new Intent(getApplicationContext(), CorrectAnswer.class);
+                        intent.putExtra(ANS, Integer.toString(ans));
+                        intent.putExtra(USER_CHOICE, userInput.getText().toString());
                         startActivity(intent);
                     }
                     else {
                         Intent intent = new Intent(getApplicationContext(), WrongAnswer.class);
+                        intent.putExtra(ANS, Integer.toString(ans));
+                        intent.putExtra(USER_CHOICE, userInput.getText().toString());
                         startActivity(intent);
                     }
                 }
