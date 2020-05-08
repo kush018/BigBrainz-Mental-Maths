@@ -2,4 +2,5 @@
     <string name="app_name">BigBrainz Mental Maths</string>
     <string name="titleText">Welcome to BigBrainz Mental Maths - Improve Your Mental Ability!</string>
     <string name="buttonText">Become Smarter Now!</string>
+    <string name="titleText2">Calculate the Sum Mentally Now!</string>
 </resources>
