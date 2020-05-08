@@ -53,7 +53,7 @@
         android:layout_marginEnd="16dp"
         android:text="Try to Calculate the Sum Mentally"
         android:textAlignment="center"
-        android:textSize="36sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
