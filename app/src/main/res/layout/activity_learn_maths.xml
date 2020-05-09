@@ -94,13 +94,13 @@
         app:layout_constraintTop_toBottomOf="@+id/userInput" />
 
     <Button
-        android:id="@+id/skipButton"
+        android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Skip Question"
-        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:text="Go Back to Main Menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/submitButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

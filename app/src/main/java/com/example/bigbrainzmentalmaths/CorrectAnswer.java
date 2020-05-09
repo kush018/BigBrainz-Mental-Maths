@@ -35,6 +35,7 @@ public class CorrectAnswer extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LearnMaths.class);
+                intent.putExtra(SelectOperation.OPERATION, getIntent().getStringExtra(SelectOperation.OPERATION));
                 startActivity(intent);
             }
         });

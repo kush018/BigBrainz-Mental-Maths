@@ -19,6 +19,7 @@ public class LearnMaths extends AppCompatActivity {
     private EditText userInput;
     private TextView operation;
     private int ans;
+    private String op;
 
     public static final String ANS = "com.example.bigbrainzmentalmaths.ANS";
     public static final String USER_CHOICE = "com.example.bigbrainzmentalmaths.USER_CHOICE";
@@ -36,18 +37,17 @@ public class LearnMaths extends AppCompatActivity {
         operand1.setText(Integer.toString(new Random().nextInt(100)));
         operand2.setText(Integer.toString(new Random().nextInt(100)));
 
-        int op;
-        op = new Random().nextInt(3);
+        op = getIntent().getStringExtra(SelectOperation.OPERATION);
         switch (op) {
-            case 0:
+            case "+":
                 operation.setText("+");
                 ans = Integer.parseInt(operand1.getText().toString()) + Integer.parseInt(operand2.getText().toString());
                 break;
-            case 1:
+            case "-":
                 operation.setText("-");
                 ans = Integer.parseInt(operand1.getText().toString()) - Integer.parseInt(operand2.getText().toString());
                 break;
-            case 2:
+            case "*":
                 operation.setText("*");
                 ans = Integer.parseInt(operand1.getText().toString()) * Integer.parseInt(operand2.getText().toString());
                 break;
@@ -64,11 +64,13 @@ public class LearnMaths extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), CorrectAnswer.class);
                             intent.putExtra(ANS, Integer.toString(ans));
                             intent.putExtra(USER_CHOICE, userInput.getText().toString());
+                            intent.putExtra(SelectOperation.OPERATION, op);
                             startActivity(intent);
                         } else {
                             Intent intent = new Intent(getApplicationContext(), WrongAnswer.class);
                             intent.putExtra(ANS, Integer.toString(ans));
                             intent.putExtra(USER_CHOICE, userInput.getText().toString());
+                            intent.putExtra(SelectOperation.OPERATION, op);
                             startActivity(intent);
                         }
                     }
@@ -80,12 +82,12 @@ public class LearnMaths extends AppCompatActivity {
             }
         });
 
-        Button skipButton = findViewById(R.id.skipButton);
+        Button backButton = findViewById(R.id.backButton);
 
-        skipButton.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LearnMaths.class);
+                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
                 startActivity(intent);
             }
         });

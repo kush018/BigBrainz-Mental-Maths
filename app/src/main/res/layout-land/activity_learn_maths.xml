@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".LearnMaths">
 
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go Back to Main Menu"
+        app:layout_constraintBaseline_toBaselineOf="@+id/submitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/submitButton" />
+
     <EditText
         android:id="@+id/operand1"
         android:layout_width="wrap_content"
@@ -91,13 +100,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/skipButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Skip Question"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/submitButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/submitButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
