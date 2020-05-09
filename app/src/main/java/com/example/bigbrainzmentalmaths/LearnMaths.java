@@ -91,5 +91,68 @@ public class LearnMaths extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button button0 = findViewById(R.id.button0);
+        Button button1 = findViewById(R.id.button1);
+        Button button2 = findViewById(R.id.button2);
+        Button button3 = findViewById(R.id.button3);
+        Button button4 = findViewById(R.id.button4);
+        Button button5 = findViewById(R.id.button5);
+        Button button6 = findViewById(R.id.button6);
+        Button button7 = findViewById(R.id.button7);
+        Button button8 = findViewById(R.id.button8);
+        Button button9 = findViewById(R.id.button9);
+
+        Button buttonNeg = findViewById(R.id.buttonNeg);
+
+        Button buttonClear = findViewById(R.id.buttonClear);
+
+        View.OnClickListener numListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Button btn = (Button) view;
+                String buttonText = btn.getText().toString();
+                userInput.append(buttonText);
+            }
+        };
+
+        View.OnClickListener negListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (userInput.getText().toString().length() == 0) {
+                    userInput.append("-");
+                }
+                else {
+                    try {
+                        int value = Integer.parseInt(userInput.getText().toString());
+                        value *= -1;
+                        userInput.setText(Integer.toString(value));
+                    }
+                    catch (NumberFormatException ignored) { }
+                }
+            }
+        };
+
+        View.OnClickListener clearListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userInput.setText("");
+            }
+        };
+
+        button0.setOnClickListener(numListener);
+        button1.setOnClickListener(numListener);
+        button2.setOnClickListener(numListener);
+        button3.setOnClickListener(numListener);
+        button4.setOnClickListener(numListener);
+        button5.setOnClickListener(numListener);
+        button6.setOnClickListener(numListener);
+        button7.setOnClickListener(numListener);
+        button8.setOnClickListener(numListener);
+        button9.setOnClickListener(numListener);
+
+        buttonNeg.setOnClickListener(negListener);
+
+        buttonClear.setOnClickListener(clearListener);
     }
 }
