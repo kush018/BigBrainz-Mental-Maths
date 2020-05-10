@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Objects;
 import java.util.Random;
 
 public class LearnMaths extends AppCompatActivity {
@@ -22,11 +21,13 @@ public class LearnMaths extends AppCompatActivity {
     private int ans;
     private String op;
     private int score = 0;
+    private int question;
 
     public static final String ANS = "com.example.bigbrainzmentalmaths.ANS";
     public static final String USER_CHOICE = "com.example.bigbrainzmentalmaths.USER_CHOICE";
     public static final String SCORE = "com.example.bigbrainzmentalmaths.SCORE";
     public static final String QUESTION = "com.example.bigbrainzmentalmaths.QUESTION";
+    public static final String SUM = "com.example.bigbrainzmentalmaths.SUM";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +43,20 @@ public class LearnMaths extends AppCompatActivity {
         operand2.setText(Integer.toString(new Random().nextInt(100)));
 
         TextView scoreText = findViewById(R.id.score);
+        TextView questionText = findViewById(R.id.question);
+
+        if (getIntent().getStringExtra(QUESTION) == null) {
+            question = 1;
+        }
+        else {
+            question = Integer.parseInt(getIntent().getStringExtra(QUESTION));
+        }
+
+        questionText.setText(("Question: " + question));
 
         if (getIntent().getStringExtra(MainMenu.TEST).equals("false")) {
             scoreText.setHeight(0);
+            questionText.setHeight(0);
         } else {
             if (getIntent().getStringExtra(SCORE) != null) {
                 score = Integer.parseInt(getIntent().getStringExtra(SCORE));
@@ -69,16 +81,6 @@ public class LearnMaths extends AppCompatActivity {
                 operation.setText("*");
                 ans = Integer.parseInt(operand1.getText().toString()) * Integer.parseInt(operand2.getText().toString());
                 break;
-            default:
-                operation.setText("/");
-                while (true) {
-                    operand2.setText(Integer.toString(new Random().nextInt(10)));
-                    operand1.setText(Integer.parseInt(operand2.getText().toString()) * new Random().nextInt(100));
-                    ans = Integer.parseInt(operand1.getText().toString()) / Integer.parseInt(operand2.getText().toString());
-                    if (Integer.parseInt(operand1.getText().toString()) > Integer.parseInt(operand2.getText().toString()) && !operand2.getText().toString().equals("0")) {
-                        break;
-                    }
-                }
         }
 
         Button submitButton = findViewById(R.id.submitButton);
@@ -90,21 +92,29 @@ public class LearnMaths extends AppCompatActivity {
                     try {
                         if (Integer.parseInt(userInput.getText().toString()) == ans) {
                             score++;
+                            question++;
                             Intent intent = new Intent(getApplicationContext(), CorrectAnswer.class);
                             intent.putExtra(ANS, Integer.toString(ans));
                             intent.putExtra(USER_CHOICE, userInput.getText().toString());
                             intent.putExtra(SelectOperation.OPERATION, op);
                             intent.putExtra(SCORE, Integer.toString(score));
+                            intent.putExtra(QUESTION, Integer.toString(question));
                             intent.putExtra(MainMenu.TEST, getIntent().getStringExtra(MainMenu.TEST));
+                            String sum = operand1.getText().toString() + " " + operation.getText().toString() + " " + operand2.getText().toString();
+                            intent.putExtra(SUM, sum);
                             startActivity(intent);
                         } else {
                             score--;
+                            question++;
                             Intent intent = new Intent(getApplicationContext(), WrongAnswer.class);
                             intent.putExtra(ANS, Integer.toString(ans));
                             intent.putExtra(USER_CHOICE, userInput.getText().toString());
                             intent.putExtra(SelectOperation.OPERATION, op);
                             intent.putExtra(SCORE, Integer.toString(score));
+                            intent.putExtra(QUESTION, Integer.toString(question));
                             intent.putExtra(MainMenu.TEST, getIntent().getStringExtra(MainMenu.TEST));
+                            String sum = operand1.getText().toString() + " " + operation.getText().toString() + " " + operand2.getText().toString();
+                            intent.putExtra(SUM, sum);
                             startActivity(intent);
                         }
                     } catch (NumberFormatException e) {

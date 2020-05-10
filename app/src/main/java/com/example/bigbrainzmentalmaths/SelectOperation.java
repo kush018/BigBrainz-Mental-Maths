@@ -19,7 +19,6 @@ public class SelectOperation extends AppCompatActivity {
         Button buttonPlus = findViewById(R.id.buttonPlus);
         Button buttonMinus = findViewById(R.id.buttonMinus);
         Button buttonMultiply = findViewById(R.id.buttonMultiply);
-        Button buttonDivide = findViewById(R.id.buttonDivide);
 
         View.OnClickListener btnListener = new View.OnClickListener() {
             @Override
@@ -35,6 +34,5 @@ public class SelectOperation extends AppCompatActivity {
         buttonPlus.setOnClickListener(btnListener);
         buttonMinus.setOnClickListener(btnListener);
         buttonMultiply.setOnClickListener(btnListener);
-        buttonDivide.setOnClickListener(btnListener);
     }
 }

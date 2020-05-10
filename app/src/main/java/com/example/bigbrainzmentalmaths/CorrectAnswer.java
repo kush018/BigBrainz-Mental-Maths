@@ -20,6 +20,7 @@ public class CorrectAnswer extends AppCompatActivity {
 
         yourAnswer = findViewById(R.id.yourAnswer);
         correctAnswer = findViewById(R.id.correctAnswer);
+        TextView questionText = findViewById(R.id.question);
 
         Intent intent = getIntent();
         String ans = intent.getStringExtra(LearnMaths.ANS);
@@ -28,6 +29,8 @@ public class CorrectAnswer extends AppCompatActivity {
         yourAnswer.setText(message);
         message = "Correct answer: " + ans;
         correctAnswer.setText(message);
+        String question = "Question: " + getIntent().getStringExtra(LearnMaths.SUM);
+        questionText.setText(question);
 
         Button nextButton = findViewById(R.id.nextButton);
 
@@ -38,7 +41,20 @@ public class CorrectAnswer extends AppCompatActivity {
                 intent.putExtra(SelectOperation.OPERATION, getIntent().getStringExtra(SelectOperation.OPERATION));
                 intent.putExtra(MainMenu.TEST, getIntent().getStringExtra(MainMenu.TEST));
                 intent.putExtra(LearnMaths.SCORE, getIntent().getStringExtra(LearnMaths.SCORE));
-                startActivity(intent);
+                intent.putExtra(LearnMaths.QUESTION, getIntent().getStringExtra(LearnMaths.QUESTION));
+                int question;
+                question = Integer.parseInt(getIntent().getStringExtra(LearnMaths.QUESTION));
+                if (getIntent().getStringExtra(MainMenu.TEST).equals("false")) {
+                    startActivity(intent);
+                }
+                else if (question == 10) {
+                    Intent scoreCard = new Intent(getApplicationContext(), ScoreCard.class);
+                    scoreCard.putExtra(LearnMaths.SCORE, getIntent().getStringExtra(LearnMaths.SCORE));
+                    startActivity(scoreCard);
+                }
+                else {
+                    startActivity(intent);
+                }
             }
         });
     }
