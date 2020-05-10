@@ -27,6 +27,7 @@ public class SelectOperation extends AppCompatActivity {
                 Button btn = (Button) view;
                 Intent intent = new Intent(getApplicationContext(), LearnMaths.class);
                 intent.putExtra(OPERATION, btn.getText().toString());
+                intent.putExtra(MainMenu.TEST, getIntent().getStringExtra(MainMenu.TEST));
                 startActivity(intent);
             }
         };
@@ -35,15 +36,5 @@ public class SelectOperation extends AppCompatActivity {
         buttonMinus.setOnClickListener(btnListener);
         buttonMultiply.setOnClickListener(btnListener);
         buttonDivide.setOnClickListener(btnListener);
-
-        Button backButton = findViewById(R.id.backButton);
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-                startActivity(intent);
-            }
-        });
     }
 }

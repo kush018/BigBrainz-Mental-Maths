@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class LearnMaths extends AppCompatActivity {
@@ -20,9 +21,12 @@ public class LearnMaths extends AppCompatActivity {
     private TextView operation;
     private int ans;
     private String op;
+    private int score = 0;
 
     public static final String ANS = "com.example.bigbrainzmentalmaths.ANS";
     public static final String USER_CHOICE = "com.example.bigbrainzmentalmaths.USER_CHOICE";
+    public static final String SCORE = "com.example.bigbrainzmentalmaths.SCORE";
+    public static final String QUESTION = "com.example.bigbrainzmentalmaths.QUESTION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,20 @@ public class LearnMaths extends AppCompatActivity {
 
         operand1.setText(Integer.toString(new Random().nextInt(100)));
         operand2.setText(Integer.toString(new Random().nextInt(100)));
+
+        TextView scoreText = findViewById(R.id.score);
+
+        if (getIntent().getStringExtra(MainMenu.TEST).equals("false")) {
+            scoreText.setHeight(0);
+        } else {
+            if (getIntent().getStringExtra(SCORE) != null) {
+                score = Integer.parseInt(getIntent().getStringExtra(SCORE));
+            } else {
+                score = 0;
+            }
+            String result = "Score: " + score;
+            scoreText.setText(result);
+        }
 
         op = getIntent().getStringExtra(SelectOperation.OPERATION);
         switch (op) {
@@ -51,6 +69,16 @@ public class LearnMaths extends AppCompatActivity {
                 operation.setText("*");
                 ans = Integer.parseInt(operand1.getText().toString()) * Integer.parseInt(operand2.getText().toString());
                 break;
+            default:
+                operation.setText("/");
+                while (true) {
+                    operand2.setText(Integer.toString(new Random().nextInt(10)));
+                    operand1.setText(Integer.parseInt(operand2.getText().toString()) * new Random().nextInt(100));
+                    ans = Integer.parseInt(operand1.getText().toString()) / Integer.parseInt(operand2.getText().toString());
+                    if (Integer.parseInt(operand1.getText().toString()) > Integer.parseInt(operand2.getText().toString()) && !operand2.getText().toString().equals("0")) {
+                        break;
+                    }
+                }
         }
 
         Button submitButton = findViewById(R.id.submitButton);
@@ -61,20 +89,25 @@ public class LearnMaths extends AppCompatActivity {
                 if (!userInput.getText().toString().equals("")) {
                     try {
                         if (Integer.parseInt(userInput.getText().toString()) == ans) {
+                            score++;
                             Intent intent = new Intent(getApplicationContext(), CorrectAnswer.class);
                             intent.putExtra(ANS, Integer.toString(ans));
                             intent.putExtra(USER_CHOICE, userInput.getText().toString());
                             intent.putExtra(SelectOperation.OPERATION, op);
+                            intent.putExtra(SCORE, Integer.toString(score));
+                            intent.putExtra(MainMenu.TEST, getIntent().getStringExtra(MainMenu.TEST));
                             startActivity(intent);
                         } else {
+                            score--;
                             Intent intent = new Intent(getApplicationContext(), WrongAnswer.class);
                             intent.putExtra(ANS, Integer.toString(ans));
                             intent.putExtra(USER_CHOICE, userInput.getText().toString());
                             intent.putExtra(SelectOperation.OPERATION, op);
+                            intent.putExtra(SCORE, Integer.toString(score));
+                            intent.putExtra(MainMenu.TEST, getIntent().getStringExtra(MainMenu.TEST));
                             startActivity(intent);
                         }
-                    }
-                    catch (NumberFormatException e) {
+                    } catch (NumberFormatException e) {
                         Toast.makeText(getApplicationContext(), "Invalid Number", Toast.LENGTH_SHORT).show();
                         userInput.setText("");
                     }
@@ -121,14 +154,13 @@ public class LearnMaths extends AppCompatActivity {
             public void onClick(View view) {
                 if (userInput.getText().toString().length() == 0) {
                     userInput.append("-");
-                }
-                else {
+                } else {
                     try {
                         int value = Integer.parseInt(userInput.getText().toString());
                         value *= -1;
                         userInput.setText(Integer.toString(value));
+                    } catch (NumberFormatException ignored) {
                     }
-                    catch (NumberFormatException ignored) { }
                 }
             }
         };

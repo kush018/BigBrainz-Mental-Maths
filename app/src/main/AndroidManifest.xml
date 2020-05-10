@@ -9,12 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".SelectOperation"
-            android:noHistory="true" />
-        <activity
-            android:name=".MainMenu"
-            android:noHistory="true" />
+        <activity android:name=".ScoreCard"></activity>
+        <activity android:name=".SelectOperation" />
+        <activity android:name=".MainMenu" />
         <activity
             android:name=".WrongAnswer"
             android:noHistory="true" />
@@ -24,9 +21,7 @@
         <activity
             android:name=".LearnMaths"
             android:noHistory="true" />
-        <activity
-            android:name=".MainActivity"
-            android:noHistory="true">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

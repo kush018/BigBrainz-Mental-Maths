@@ -9,6 +9,8 @@ import android.widget.Button;
 
 public class MainMenu extends AppCompatActivity {
 
+    public static final String TEST = "com.example.bigbrainzmentalmaths.TEST";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,7 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SelectOperation.class);
+                intent.putExtra(TEST, "false");
                 startActivity(intent);
             }
         });
@@ -29,6 +32,7 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SelectOperation.class);
+                intent.putExtra(TEST, "true");
                 startActivity(intent);
             }
         });

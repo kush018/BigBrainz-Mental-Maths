@@ -36,6 +36,8 @@ public class WrongAnswer extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LearnMaths.class);
                 intent.putExtra(SelectOperation.OPERATION, getIntent().getStringExtra(SelectOperation.OPERATION));
+                intent.putExtra(MainMenu.TEST, getIntent().getStringExtra(MainMenu.TEST));
+                intent.putExtra(LearnMaths.SCORE, getIntent().getStringExtra(LearnMaths.SCORE));
                 startActivity(intent);
             }
         });
