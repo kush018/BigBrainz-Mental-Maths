@@ -68,7 +68,7 @@ public class LearnMaths extends AppCompatActivity {
         }
 
         op = getIntent().getStringExtra(SelectOperation.OPERATION);
-        if (!operand1.getText().toString().equals("")) {
+        if (operand1.getText().toString().equals("")) {
             switch (op) {
                 case "+":
                     for (int i = 0; i < Integer.parseInt(getIntent().getStringExtra(SelectDifficulty.DIFFICULTY)); i++) {
