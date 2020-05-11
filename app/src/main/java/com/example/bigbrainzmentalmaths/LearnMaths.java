@@ -39,9 +39,6 @@ public class LearnMaths extends AppCompatActivity {
         userInput = findViewById(R.id.userInput);
         operation = findViewById(R.id.operation);
 
-        operand1.setText(Integer.toString(new Random().nextInt(100)));
-        operand2.setText(Integer.toString(new Random().nextInt(100)));
-
         TextView scoreText = findViewById(R.id.score);
         TextView questionText = findViewById(R.id.question);
 
@@ -70,14 +67,59 @@ public class LearnMaths extends AppCompatActivity {
         op = getIntent().getStringExtra(SelectOperation.OPERATION);
         switch (op) {
             case "+":
+                for (int i = 0; i < Integer.parseInt(getIntent().getStringExtra(SelectDifficulty.DIFFICULTY)); i++) {
+                    operand1.append(Integer.toString(new Random().nextInt(10)));
+                    operand2.append(Integer.toString(new Random().nextInt(10)));
+                }
                 operation.setText("+");
                 ans = Integer.parseInt(operand1.getText().toString()) + Integer.parseInt(operand2.getText().toString());
                 break;
             case "-":
+                for (int i = 0; i < Integer.parseInt(getIntent().getStringExtra(SelectDifficulty.DIFFICULTY)); i++) {
+                    operand1.append(Integer.toString(new Random().nextInt(10)));
+                    operand2.append(Integer.toString(new Random().nextInt(10)));
+                }
                 operation.setText("-");
                 ans = Integer.parseInt(operand1.getText().toString()) - Integer.parseInt(operand2.getText().toString());
                 break;
             case "*":
+                switch (getIntent().getStringExtra(SelectDifficulty.DIFFICULTY)) {
+                    case "1":
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        break;
+                    case "2":
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        break;
+                    case "3":
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        break;
+                    case "4":
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        break;
+                    case "5":
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        break;
+                    default:
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10)));
+                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                }
                 operation.setText("*");
                 ans = Integer.parseInt(operand1.getText().toString()) * Integer.parseInt(operand2.getText().toString());
                 break;
@@ -100,6 +142,7 @@ public class LearnMaths extends AppCompatActivity {
                             intent.putExtra(SCORE, Integer.toString(score));
                             intent.putExtra(QUESTION, Integer.toString(question));
                             intent.putExtra(MainMenu.TEST, getIntent().getStringExtra(MainMenu.TEST));
+                            intent.putExtra(SelectDifficulty.DIFFICULTY, getIntent().getStringExtra(SelectDifficulty.DIFFICULTY));
                             String sum = operand1.getText().toString() + " " + operation.getText().toString() + " " + operand2.getText().toString();
                             intent.putExtra(SUM, sum);
                             startActivity(intent);
@@ -113,6 +156,7 @@ public class LearnMaths extends AppCompatActivity {
                             intent.putExtra(SCORE, Integer.toString(score));
                             intent.putExtra(QUESTION, Integer.toString(question));
                             intent.putExtra(MainMenu.TEST, getIntent().getStringExtra(MainMenu.TEST));
+                            intent.putExtra(SelectDifficulty.DIFFICULTY, getIntent().getStringExtra(SelectDifficulty.DIFFICULTY));
                             String sum = operand1.getText().toString() + " " + operation.getText().toString() + " " + operand2.getText().toString();
                             intent.putExtra(SUM, sum);
                             startActivity(intent);

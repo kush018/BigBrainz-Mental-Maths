@@ -24,6 +24,7 @@ public class ScoreCard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent goBack = new Intent(getApplicationContext(), MainMenu.class);
+                startActivity(goBack);
             }
         });
     }

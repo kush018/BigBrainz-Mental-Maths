@@ -24,7 +24,7 @@ public class SelectOperation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Button btn = (Button) view;
-                Intent intent = new Intent(getApplicationContext(), LearnMaths.class);
+                Intent intent = new Intent(getApplicationContext(), SelectDifficulty.class);
                 intent.putExtra(OPERATION, btn.getText().toString());
                 intent.putExtra(MainMenu.TEST, getIntent().getStringExtra(MainMenu.TEST));
                 startActivity(intent);

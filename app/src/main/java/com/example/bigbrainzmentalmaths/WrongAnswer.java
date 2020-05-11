@@ -42,12 +42,13 @@ public class WrongAnswer extends AppCompatActivity {
                 intent.putExtra(MainMenu.TEST, getIntent().getStringExtra(MainMenu.TEST));
                 intent.putExtra(LearnMaths.SCORE, getIntent().getStringExtra(LearnMaths.SCORE));
                 intent.putExtra(LearnMaths.QUESTION, getIntent().getStringExtra(LearnMaths.QUESTION));
+                intent.putExtra(SelectDifficulty.DIFFICULTY, getIntent().getStringExtra(SelectDifficulty.DIFFICULTY));
                 int question;
                 question = Integer.parseInt(getIntent().getStringExtra(LearnMaths.QUESTION));
                 if (getIntent().getStringExtra(MainMenu.TEST).equals("false")) {
                     startActivity(intent);
                 }
-                else if (question == 10) {
+                else if (question == 11) {
                     Intent scoreCard = new Intent(getApplicationContext(), ScoreCard.class);
                     scoreCard.putExtra(LearnMaths.SCORE, getIntent().getStringExtra(LearnMaths.SCORE));
                     startActivity(scoreCard);
