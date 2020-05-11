@@ -68,16 +68,16 @@ public class LearnMaths extends AppCompatActivity {
         switch (op) {
             case "+":
                 for (int i = 0; i < Integer.parseInt(getIntent().getStringExtra(SelectDifficulty.DIFFICULTY)); i++) {
-                    operand1.append(Integer.toString(new Random().nextInt(10)));
-                    operand2.append(Integer.toString(new Random().nextInt(10)));
+                    operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                    operand2.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
                 }
                 operation.setText("+");
                 ans = Integer.parseInt(operand1.getText().toString()) + Integer.parseInt(operand2.getText().toString());
                 break;
             case "-":
                 for (int i = 0; i < Integer.parseInt(getIntent().getStringExtra(SelectDifficulty.DIFFICULTY)); i++) {
-                    operand1.append(Integer.toString(new Random().nextInt(10)));
-                    operand2.append(Integer.toString(new Random().nextInt(10)));
+                    operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                    operand2.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
                 }
                 operation.setText("-");
                 ans = Integer.parseInt(operand1.getText().toString()) - Integer.parseInt(operand2.getText().toString());
@@ -85,40 +85,40 @@ public class LearnMaths extends AppCompatActivity {
             case "*":
                 switch (getIntent().getStringExtra(SelectDifficulty.DIFFICULTY)) {
                     case "1":
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand2.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
                         break;
                     case "2":
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand2.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
                         break;
                     case "3":
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand2.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
                         break;
                     case "4":
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand2.append(Integer.toString(new Random().nextInt(10)));
-                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand2.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand2.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
                         break;
                     case "5":
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand2.append(Integer.toString(new Random().nextInt(10)));
-                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand2.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand2.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
                         break;
                     default:
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand1.append(Integer.toString(new Random().nextInt(10)));
-                        operand2.append(Integer.toString(new Random().nextInt(10)));
-                        operand2.append(Integer.toString(new Random().nextInt(10)));
-                        operand2.append(Integer.toString(new Random().nextInt(10)));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand1.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand2.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand2.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
+                        operand2.append(Integer.toString(new Random().nextInt(10 - 1) + 1));
                 }
                 operation.setText("*");
                 ans = Integer.parseInt(operand1.getText().toString()) * Integer.parseInt(operand2.getText().toString());
